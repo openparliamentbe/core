@@ -1,5 +1,5 @@
 <?php
 
 Route::resource('/assemblies', 'AssembliesController', [
-    'only' => ['index']
+    'only' => ['index', 'show']
 ]);

@@ -52,6 +52,14 @@
             padding: .5em .75em;
             border-left: 1px solid #ddd;
         }
+        a.link {
+            border-bottom: 1px solid transparent;
+            color: #0f88ff;
+            text-decoration: none;
+        }
+        a.link:hover {
+            border-bottom-color: currentColor;
+        }
     </style>
 </head>
 <body>
@@ -69,7 +77,11 @@
 
         @foreach ($assemblies as $assembly)
             <tr>
-                <td>{{ $assembly->id }}</td>
+                <td>
+                    <a href="/assemblies/{{ $assembly->id }}" class="link">
+                        {{ $assembly->id }}
+                    </a>
+                </td>
                 <td>{{ $assembly->name_en }}</td>
                 <td>{{ $assembly->name_fr }}</td>
                 <td>{{ $assembly->name_nl }}</td>
