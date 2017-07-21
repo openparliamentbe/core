@@ -12,6 +12,8 @@ class AssembliesController extends Controller
     /**
      * Get the list of assemblies.
      *
+     * @param  \Illuminate\Http\Request  $request
+     *
      * @return \Illuminate\Http\Response|\Illuminate\Contracts\View\View|\Illuminate\Database\Eloquent\Collection
      */
     public function index(Request $request)
