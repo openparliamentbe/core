@@ -153,4 +153,10 @@ class AssemblyTest extends TestCase
             ->assertContentType('text/xml')
             ->assertContentEquals(__DIR__.'/fixtures/single_assembly.xml');
     }
+
+    /** @test */
+    function get_a_not_found_response_if_looking_for_a_nonexistent_assembly()
+    {
+        $this->get('/assemblies/z')->assertStatus(Response::HTTP_NOT_FOUND);
+    }
 }

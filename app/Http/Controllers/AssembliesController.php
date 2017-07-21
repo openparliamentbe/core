@@ -66,7 +66,7 @@ class AssembliesController extends Controller
      */
     public function show(Request $request, $id)
     {
-        $assembly = Assembly::find($id);
+        $assembly = Assembly::findOrFail($id);
 
         if ($request->acceptsHtml()) {
             return view('assemblies.show_html', compact('assembly'));
