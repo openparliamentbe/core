@@ -43,8 +43,8 @@ abstract class TestCase extends BaseTestCase
             $expectedContent = file_get_contents($pathToContent);
 
             PHPUnit::assertEquals(
-                $expectedContent,
-                $this->content(),
+                trim($expectedContent),
+                trim($this->content()),
                 'The content of the HTTP response is not the same as expected.'
             );
 
