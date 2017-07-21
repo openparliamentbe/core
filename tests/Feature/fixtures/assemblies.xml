@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assemblies>
+    <assembly
+        id="k"
+        name_en="Chamber of Representatives"
+        name_fr="Chambre des représentants"
+        name_nl="Kamer van Volksvertegenwoordigers"
+    />
+    <assembly
+        id="s"
+        name_en="Senate"
+        name_fr="Sénat"
+        name_nl="Senaat"
+    />
+</assemblies>
