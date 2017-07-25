@@ -50,7 +50,7 @@ class NegotiateContent
 
         // If we cannot provide the resource in any of the formats
         // that are accepted by the client, we abort the request.
-        if ($acceptedType) {
+        if (!$acceptedType) {
             abort(
                 Response::HTTP_NOT_ACCEPTABLE,
                 'The supported formats are: '.implode(', ', $availableTypes).'.'
