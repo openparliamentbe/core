@@ -20,40 +20,7 @@ class AssembliesController extends Controller
     {
         $assemblies = Assembly::all();
 
-        if ($request->acceptsHtml()) {
-            return view('assemblies.index_html', compact('assemblies'));
-
-        } elseif ($request->accepts('text/xml')) {
-
-            // We use a Blade view to render the XML tree.
-            $xml = view('assemblies.index_xml', compact('assemblies'))->render();
-
-            return response($xml, 200, [
-                'Content-Type' => 'text/xml',
-            ]);
-
-        } elseif ($request->accepts('text/csv')) {
-
-            // Create file in memory.
-            $csv = Writer::createFromFileObject(new SplTempFileObject());
-
-            // Insert the CSV headers.
-            $csv->insertOne(['identifier', 'name_en', 'name_fr', 'name_nl']);
-
-            // Insert the data.
-            $assemblies->each(function ($item) use ($csv) {
-                $csv->insertOne(array_values($item->toArray()));
-            });
-
-            // Generate a reponse.
-            return response((string) $csv, 200, [
-                'Content-Type' => 'text/csv',
-                'Content-Transfer-Encoding' => 'binary',
-            ]);
-        }
-
-        // Fall back on JSON by default.
-        return Assembly::all();
+        return $this->renderResource($assemblies, ['id' => 'identifier']);
     }
 
     /**
@@ -68,37 +35,6 @@ class AssembliesController extends Controller
     {
         $assembly = Assembly::findOrFail($id);
 
-        if ($request->acceptsHtml()) {
-            return view('assemblies.show_html', compact('assembly'));
-
-        } elseif ($request->accepts('text/xml')) {
-
-            // We use a Blade view to render the XML tree.
-            $xml = view('assemblies.show_xml', compact('assembly'))->render();
-
-            return response($xml, 200, [
-                'Content-Type' => 'text/xml',
-            ]);
-
-        } elseif ($request->accepts('text/csv')) {
-
-            // Create file in memory.
-            $csv = Writer::createFromFileObject(new SplTempFileObject());
-
-            // Insert the CSV headers.
-            $csv->insertOne(['identifier', 'name_en', 'name_fr', 'name_nl']);
-
-            // Insert the data.
-            $csv->insertOne(array_values($assembly->toArray()));
-
-            // Generate a reponse.
-            return response((string) $csv, 200, [
-                'Content-Type' => 'text/csv',
-                'Content-Transfer-Encoding' => 'binary',
-            ]);
-        }
-
-        // Fall back on JSON by default.
-        return Assembly::find($id);
+        return $this->renderResource($assembly, ['id' => 'identifier']);
     }
 }

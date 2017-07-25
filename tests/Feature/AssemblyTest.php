@@ -159,4 +159,11 @@ class AssemblyTest extends TestCase
     {
         $this->get('/assemblies/z')->assertStatus(Response::HTTP_NOT_FOUND);
     }
+
+    /** @test */
+    function get_a_not_acceptable_response_if_wanting_data_in_an_unavailable_format()
+    {
+        $this->get('/assemblies/k', ['accept' => 'foo/bar',])
+             ->assertStatus(Response::HTTP_NOT_ACCEPTABLE);
+    }
 }
