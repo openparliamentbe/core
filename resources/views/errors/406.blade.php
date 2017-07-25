@@ -27,6 +27,7 @@
     </style>
 </head>
 <body>
-    <p>The resource you are looking cannot be provided in any of the formats you accept.</p>
+    <p>The resource you are looking for cannot be provided in any of the formats you accept.</p>
+    <p>{{ $exception->getMessage() }}</p>
 </body>
 </html>
